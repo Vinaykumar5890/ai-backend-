@@ -27,9 +27,7 @@ app.post('/ask', async (req, res) => {
   }
 ], 
         max_tokens: 1000,
-        temperature: 0.7,
-        top_p: 1,
-        n: 1,
+        temperature: 0.7
       },
       {
         headers: {
@@ -40,12 +38,10 @@ app.post('/ask', async (req, res) => {
         }
       }
     );
-
     res.json({ reply: response.data.choices[0].message.content });
   } catch (err) {
     console.error("OpenRouter error:", err.response?.data || err.message);
     res.status(500).json({ error: "Failed to get response from OpenRouter." });
   }
 });
-
 app.listen(5000, () => console.log("🚀 Server running on port 5000"));
